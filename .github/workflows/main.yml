@@ -1,0 +1,43 @@
+class Cliente: 
+    def __init__(self, nombre, info): 
+        self.nombre = nombre 
+        self.info = info 
+ 
+    def actualizar_info(self, nueva_info): 
+        self.info = nueva_info 
+ 
+class GestionClientes: 
+    def __init__(self): 
+        self.clientes = {} 
+ 
+    def agregar_cliente(self, nombre, info): 
+        if nombre in self.clientes: 
+            print("El cliente ya existe.") 
+        else: 
+            self.clientes[nombre] = Cliente(nombre, info) 
+ 
+    def modificar_cliente(self, nombre, nueva_info): 
+        if nombre in self.clientes: 
+            self.clientes[nombre].actualizar_info(nueva_info) 
+        else: 
+            print("El cliente no existe.") 
+ 
+    def borrar_cliente(self, nombre): 
+        if nombre in self.clientes: 
+            del self.clientes[nombre] 
+        else: 
+            print("El cliente no existe.") 
+ 
+    def mostrar_clientes(self): 
+        for nombre, cliente in self.clientes.items(): 
+            print(f"Nombre: {cliente.nombre}, Información: {cliente.info}") 
+ 
+# Ejemplo de uso 
+gestion = GestionClientes() 
+gestion.agregar_cliente("Juan", "Info de Juan") 
+gestion.agregar_cliente("Maria", "Info de Maria") 
+gestion.mostrar_clientes() 
+gestion.modificar_cliente("Juan", "Nueva info de Juan") 
+gestion.mostrar_clientes() 
+gestion.borrar_cliente("Maria") 
+gestion.mostrar_clientes()
